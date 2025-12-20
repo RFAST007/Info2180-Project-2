@@ -35,8 +35,8 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 // Validate password length
-if (strlen($password) < 6) {
-    echo json_encode(['success' => false, 'message' => 'Password must be at least 6 characters long']);
+if (strlen($password) < 8) {
+    echo json_encode(['success' => false, 'message' => 'Password must be at least 8 characters long']);
     exit;
 }
 

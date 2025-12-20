@@ -36,33 +36,54 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
                 
-                // Password validation (at least 6 characters)
-                if (password.length < 6) {
-                    showMessage('Password must be at least 6 characters long', 'error');
+                // Password validation (at least 8 characters)
+                if (password.length < 8) {
+                    showMessage('Password must be at least 8 characters long', 'error');
                     return;
                 }
+
+                const formData = new FormData();
+                formData.append('firstName', firstName);
+                formData.append('lastName', lastName);
+                formData.append('email', email);
+                formData.append('password', password);
+                formData.append('role', role);
                 
-                // Show success message
-                const successMsg = `User ${firstName} ${lastName} (${email}) added successfully as ${role}.`;
-                showMessage(successMsg, 'success');
-                
-                // you would send this data to the server
-                // we'll simulate a successful submission
-                console.log({
-                    firstName,
-                    lastName,
-                    email,
-                    password: '********', // Never log actual passwords
-                    role
+                // Using Fetch API to send data to PHP
+                fetch('add_user.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showMessage(data.message, 'success');
+                        // Reset form after a delay
+                        setTimeout(() => {
+                            userForm.reset();
+                            // Reset the password visibility icon
+                            passwordInput.setAttribute('type', 'password');
+                            togglePassword.innerHTML = '<i class="far fa-eye"></i>';
+                        }, 2000);
+                        
+                    } else {
+                        showMessage(data.message, 'error');
+                    }
+                })
+                .catch(error => {
+                    showMessage('Error saving user: ' + error.message, 'error');
+                })
+                .finally(() => {
+                    // Restore button
+                    saveBtn.innerHTML = originalText;
+                    saveBtn.disabled = false;
                 });
                 
-                // Reset form after a delay
-                setTimeout(() => {
-                    userForm.reset();
-                    // Reset the password visibility icon
-                    passwordInput.setAttribute('type', 'password');
-                    togglePassword.innerHTML = '<i class="far fa-eye"></i>';
-                }, 2000);
+                
+                
+             
+                
+                
             });
             
             // Function to show messages
