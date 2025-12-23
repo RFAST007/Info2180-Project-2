@@ -70,15 +70,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     } else {
                         showMessage(data.message, 'error');
                     }
-                })
-                .catch(error => {
+                });
+                /*.catch(error => {
                     showMessage('Error saving user: ' + error.message, 'error');
                 })
                 .finally(() => {
                     // Restore button
                     saveBtn.innerHTML = originalText;
                     saveBtn.disabled = false;
-                });
+                });*/
                 
                 
                 

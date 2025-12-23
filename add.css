@@ -167,7 +167,7 @@
             margin-top: 20px;
         }   
         
-        #btn-save {
+        .btn-save {
             background-color: #3498db;
             color: white;
             border: none;
@@ -180,11 +180,11 @@
             font-weight: 600;
         }
         
-        #btn-save:hover {
+        .btn-save:hover {
             background-color: #2980b9;
         }
         
-        #btn-save:active {
+        .btn-save:active {
             transform: translateY(1px); /* Simulate button press */
         }
         

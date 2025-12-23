@@ -61,7 +61,7 @@ $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 
 // Save to database
-$stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password, role) VALUES (?, ?, ?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO users (firstname, lastname, email, password, role) VALUES (?, ?, ?, ?, ?)");
 if ($stmt) {
     $stmt->bind_param("sssss", $firstName, $lastName, $email, $hashedPassword, $role);
     $success = $stmt->execute();
