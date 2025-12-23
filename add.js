@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const email = document.getElementById('email').value.trim();
                 const password = document.getElementById('password').value;
                 const role = document.querySelector('input[name="role"]:checked').value;
+                const saveBtn = document.querySelector('.btn-save');
                 
                 // Simple validation
                 if (!firstName || !lastName || !email || !password) {

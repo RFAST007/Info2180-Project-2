@@ -1,4 +1,13 @@
 <?php
+$host = 'localhost';
+$username = 'Rfast_user';
+$password = 'password123';
+$database = 'dolphin_crm';
+
+$conn = new mysqli($host, $username, $password, $database);
+if ($conn->connect_error) {
+     die('Connection failed: ' . $conn->connect_error);
+}
 // add_user.php - Backend to handle user addition
 
 // Enable error reporting for debugging
@@ -50,15 +59,16 @@ if (!in_array($role, $allowedRoles)) {
 // Hash the password for security
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-// you would save to a database here
-// Example: 
-// $db = new mysqli('localhost', 'username', 'password', 'database');
-// $stmt = $db->prepare("INSERT INTO users (first_name, last_name, email, password, role) VALUES (?, ?, ?, ?, ?)");
-// $stmt->bind_param("sssss", $firstName, $lastName, $email, $hashedPassword, $role);
-// $success = $stmt->execute();
 
-// we'll simulate a successful save
-$success = true;
+// Save to database
+$stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password, role) VALUES (?, ?, ?, ?, ?)");
+if ($stmt) {
+    $stmt->bind_param("sssss", $firstName, $lastName, $email, $hashedPassword, $role);
+    $success = $stmt->execute();
+    $stmt->close();
+} else {
+    $success = false;
+}
 
 if ($success) {
     // Return success response
