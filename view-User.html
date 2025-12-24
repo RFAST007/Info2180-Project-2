@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add User</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="view.css">
+    <script src="view.js"></script>
+</head>
+
+<body>
+
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        
+        
+        <ul class="side-menu">
+            <li class="side-item">
+                <div class="side-icon"><i class="fas fa-home"></i></div>
+                <span>Home</span>
+            </li>
+            <li class="side-item">
+                <div class="side-icon"><i class="fas fa-address-book"></i></div>
+                <span>New Contact</span>
+            </li>
+            <li class="side-item active">
+                <div class="side-icon"><i class="fas fa-users"></i></div>
+                <span>Users</span>
+            </li>
+            <li class="side-item logout">
+                <div class="side-icon"><i class="fas fa-sign-out-alt"></i></div>
+                <span>Logout</span>
+            </li>
+        </ul>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <div class="header">
+            <h2>Users List</h2>
+            <div class="user-info">
+                <div class="user-avatar">JD</div>
+                <span>John Doe</span>
+                <span class="user-role-badge role-admin">Admin</span>
+            </div>
+        </div>
+        
+        <!-- Admin Check Area (initially hidden) -->
+        <div id="adminCheck" class="admin-check" style="display: none;">
+            <i class="fas fa-lock fa-3x" style="color: #e74c3c; margin-bottom: 20px;"></i>
+            <h3>Admin Access Required</h3>
+            <p>This page is restricted to administrators only.</p>
+            <p>Please log in with an admin account to view the users list.</p>
+            <button class="btn-login" onclick="loginAsAdmin()">
+                <i class="fas fa-sign-in-alt"></i> Log in as Admin
+            </button>
+        </div>
+        
+        <!-- Users Table Area (initially hidden) -->
+        <div id="usersTableArea" style="display: none;">
+            <div class="users-header">
+                <h2>All Users</h2>
+                <div class="user-count" id="userCount">0 users</div>
+            </div>
+            
+            <div class="users-table-container">
+                <div class="table-header">
+                    <div class="col-name">Name</div>
+                    <div class="col-email">Email</div>
+                    <div class="col-role">Role</div>
+                    <div class="col-created">Created</div>
+                </div>
+                
+                <div id="usersTableBody">
+                    <!-- Users will be loaded here dynamically -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Loading Indicator -->
+        <div id="loading" class="loading-indicator" style="display: none;">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin fa-2x"></i>
+                <p>Loading users...</p>
+            </div>
+        </div>
+    </main>
+    
+</body>
+
+</html>
