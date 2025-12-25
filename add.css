@@ -12,6 +12,36 @@
             min-height: 100vh;
             background-color: #f5f7fa;
             color: #333;
+            margin-top: 56px; /* Add space for fixed header */
+        }
+        
+        /* Header Styles */
+        header {
+            width: 100vw;
+            min-width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background: #232f3e;
+            color: #fff;
+            padding: 16px 24px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
+        .header-file {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        #root {
+            max-width: 1200px;
+            margin: 0;
         }
         
         /* Sidebar Navigation */
@@ -226,5 +256,4 @@
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
-        
-       
+

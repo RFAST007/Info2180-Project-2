@@ -3,6 +3,69 @@ let isAdmin = false;
 
 document.addEventListener('DOMContentLoaded', function() {
     checkAdminStatus();
+
+
+    // Function to show messages
+    function showMessage(message, type) {
+        let messageDiv = document.getElementById('message');
+        if (!messageDiv) {
+            messageDiv = document.createElement('div');
+            messageDiv.id = 'message';
+            messageDiv.className = 'message';
+            document.body.appendChild(messageDiv);
+        }
+        messageDiv.textContent = message;
+        messageDiv.className = `message ${type}`;
+        messageDiv.style.display = 'block';
+        
+        // Hide message after 5 seconds
+        setTimeout(() => {
+            messageDiv.style.display = 'none';
+        }, 5000);
+    }   
+
+
+    // Navigation menu interactions
+    const sideItems = document.querySelectorAll('.side-item');
+    sideItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // Remove active class from all items
+            sideItems.forEach(i => i.classList.remove('active'));
+            
+            // Add active class to clicked item
+            this.classList.add('active');
+            
+            // Handle logout separately
+            if (this.querySelector('.fa-sign-out-alt')) {
+                showMessage('You have been logged out successfully', 'success');
+                setTimeout(() => {
+                    window.location.href = 'logout.html'; //this would redirect to logout page
+                }, 1000);
+            }
+
+
+            if (this.querySelector('.fa-address-book')) {
+                showMessage('Loading contact form...', 'success');
+                setTimeout(() => {
+                    window.location.href = '#'; //this would redirect to add user page
+                }, 300);
+            }
+
+            if (this.querySelector('.fa-users')) {
+                showMessage('Loading user list...', 'success');
+                setTimeout(() => {
+                    window.location.href = 'view-User.html'; //this would redirect to user list page
+                }, 300);
+            }
+
+            if (this.querySelector('.fa-home')) {
+                showMessage('Loading home page...', 'success');
+                setTimeout(() => {
+                    window.location.href = '#'; //this would redirect to home page
+                }, 300);
+            }
+        });
+    });
 });
 
 function checkAdminStatus() {
@@ -118,8 +181,17 @@ function renderUsersTable(users) {
     tableBody.innerHTML = html;
 }
 
+
+
+
 function formatDate(dateString) {
-    const date = new Date(dateString);
+    // If dateString is missing or invalid, use current date
+    let date;
+    if (!dateString || isNaN(Date.parse(dateString))) {
+        date = new Date();
+    } else {
+        date = new Date(dateString);
+    }
     return date.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'short',

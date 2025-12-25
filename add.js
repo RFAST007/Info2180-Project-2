@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (this.querySelector('.fa-sign-out-alt')) {
                         showMessage('You have been logged out successfully', 'success');
                         setTimeout(() => {
-                            window.location.href = '#'; //this would redirect to logout page
+                            window.location.href = 'logout.html'; //this would redirect to logout page
                         }, 1000);
                     }
 
@@ -124,14 +124,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (this.querySelector('.fa-address-book')) {
                         showMessage('Loading contact form...', 'success');
                         setTimeout(() => {
-                            window.location.href = 'user-add.html'; //this would redirect to add user page
+                            window.location.href = '#'; //this would redirect to add user page
                         }, 300);
                     }
 
                     if (this.querySelector('.fa-users')) {
                         showMessage('Loading user list...', 'success');
                         setTimeout(() => {
-                            window.location.href = '#'; //this would redirect to user list page
+                            window.location.href = 'view-User.html'; //this would redirect to user list page
                         }, 300);
                     }
 
